@@ -1,0 +1,15 @@
+<div class="container custom-container">
+    <h3>Contact Us</h3>
+    <form [formGroup]="contact">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Title:</label>
+            <input type="email" class="form-control" formControlName="Title" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Message:</label>
+            <input type="email" class="form-control" formControlName="Message" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+    <!-- {{signUp.value | json}} -->
+</div>

@@ -1,0 +1,244 @@
+<nav id="navbar-example2" class="navbar navbar-expand-lg bg-light fixed-top navbar-custom">
+  <div class="container-fluid ">
+    <a class="navbar-brand" href="/">{{title}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <ng-container *ngIf="!showSignUp && !showLogin && !showIde && !showCompete && !showProblems && !showContact">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#practice">Practice</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#compete">Compete</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#ide">Online IDE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" (click)="showContactPage()" href="#">Contact Us</a>
+        </li>
+
+      </ul>
+      <form class="d-flex justify-content-between">
+        <li class="nav-item button-custom">
+          <button class="btn btn-outline-primary nav-item " type="submit" (click)="showLoginPage()">Login</button>
+        </li>
+        <li class="nav-item  button-custom">
+          <button class="btn btn-outline-primary nav-item" type="submit" (click)="showSignUpPage()">Sign Up</button>
+        </li>
+      </form>
+    </div>
+  </ng-container>
+  </div>
+</nav>
+
+
+<!-- <router-outlet></router-outlet> -->
+
+
+<!-- SignUp Component -->
+<ng-container *ngIf="showSignUp">
+  <div class="signup-login-page">
+    <app-sign-up></app-sign-up>
+  </div>
+</ng-container>
+
+<!-- Login Component -->
+<ng-container *ngIf="showLogin">
+  <div class="signup-login-page">
+    <app-login></app-login>
+  </div>
+</ng-container>
+
+
+<!-- IDE Component -->
+<ng-container *ngIf="showIde">
+  <div class=" signup-login-page">
+    <app-ide></app-ide>
+  </div>
+</ng-container>
+
+
+<!-- Compete Component -->
+<ng-container *ngIf="showCompete">
+  <div class="compete">
+    <app-compete></app-compete>
+  </div>
+</ng-container>
+
+
+<!-- Problems Component -->
+<ng-container *ngIf="showProblems">
+  <div class="compete">
+    <app-problems></app-problems>
+  </div>
+</ng-container>
+
+
+<!-- Contact Component -->
+<ng-container *ngIf="showContact">
+  <div class="signup-login-page">
+    <app-contact></app-contact>
+  </div>
+</ng-container>
+
+
+
+<ng-container *ngIf="!showSignUp && !showLogin && !showIde && !showCompete && !showProblems && !showContact">
+
+  <div data-bs-spy="scroll" data-bs-target="#navbar-example2">
+
+
+  <!-- Sliders -->
+  <div class="container" id="home" style="margin-top: 5%;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item">
+          <img src="assets/img3.jpg" class="d-block w-100" alt="img">
+        </div>
+        <div class="carousel-item active">
+          <img src="assets/img1.jpg" class="d-block w-100" alt="img">
+        </div>
+        <div class="carousel-item">
+          <img src="assets/img2.png" class="d-block w-100" alt="img">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+
+
+
+    <!-- Practice Section -->
+    <div id="practice" class="custom-section">
+      <div class="container">
+        <div class="custom-section-in">
+          <h3>Practice</h3>
+
+          <br>
+          <div class="lists">
+            <ul>
+              <li>
+                <h5>Problems for everyone</h5>
+              </li>
+              Includes Beginners to Experienced programmers
+              <br>
+              <br>
+              <li>
+                <h5>3000+ Problems</h5>
+              </li>
+              Practice more than 3000 problems across varying Difficulty ratings and Popular topics.
+            </ul>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="showProblemsPage()"><b> Go To Practice </b></button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Compete Section -->
+    <div id="compete" class="">
+      <div class="container">
+        <div class="custom-section-in">
+          <h3>Compete</h3>
+
+          <br>
+          <div class="lists">
+            <ul>
+              <li>
+                <h5>Rated Contests</h5>
+              </li>
+              <ul>
+                <li>Includes Beginners to Experienced programmers</li>
+                <li>Participate in 6+ contests each month, on every Wednesday and the Weekends</li>
+                <li>Four distinct Divisions grouping similarly skilled programmers together</li>
+              </ul>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="showCompetePage()"><b> Go To Contests </b></button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- IDE Section -->
+    <div id="ide" class="blue-section">
+      <div class="container">
+        <div class="custom-section-in">
+          <h3>Online IDE</h3>
+          <br>
+          <div class="d-flex justify-content-around">
+            <div>
+              <ul>
+                <li>
+                  <h5>IDE for Practice</h5>
+                </li>
+                We now support 4 popular coding languages. <br>
+                At our core, CodeGiri is about programmers. Our powerful online
+                ide help you test, debug and even write your own codes online.
+              </ul>
+            </div>
+            <div>
+              <img src="assets/ide.jpg" alt="img" class="img">
+            </div>
+          </div>
+          <button type="button" (click)="showIdePage()" class="btn btn-primary"><b> Go To IDE </b></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!-- Important Links of our resources & information -->
+<div class="black-section">
+  <div class="container">
+    <div class="custom-section-in">
+      <h5 class="text-center">Important Links of our resources & information</h5>
+      <br>
+      <div class="d-flex justify-content-around">
+        <div>
+          <h5>Programming Tools</h5>
+          <a href="#" class="a">Online IDE</a><br>
+          <a href="#" class="a">Upcoming Coding Contests</a>
+        </div>
+        <div>
+          <h5>More</h5>
+          <a href="#" class="a">Practice Problems</a><br>
+          <a href="#" class="a">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<div class="container footerb navbar-custom">
+  <a href="#">www.codegiri.com</a>
+</div>

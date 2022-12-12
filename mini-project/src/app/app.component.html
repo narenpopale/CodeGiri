@@ -1,0 +1,69 @@
+<nav id="navbar-example2" class="navbar navbar-expand-lg bg-light fixed-top navbar-custom">
+  <div class="container-fluid ">
+    <a class="navbar-brand" href="/">{{title}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/practice">Practice</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/compete">Compete</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/ide">Online IDE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" >Contribute</a>
+          </li>
+
+        </ul>
+        <form class="d-flex justify-content-between">
+          <li class="nav-item button-custom">
+            <button class="btn btn-outline-primary nav-item " type="submit" (click)="showLoginPage()">Login</button>
+          </li>
+          <li class="nav-item  button-custom">
+            <button class="btn btn-outline-primary nav-item" type="submit" (click)="showSignUpPage()">Sign Up</button>
+          </li>
+        </form>
+      </div>
+  </div>
+</nav>
+
+
+<router-outlet></router-outlet>
+
+
+<!-- Important Links of our resources & information -->
+<div class="black-section">
+  <div class="container">
+    <div class="custom-section-in">
+      <h5 class="text-center">Important Links of our resources & information</h5>
+      <br>
+      <div class="d-flex justify-content-around">
+        <div>
+          <h5>Programming Tools</h5>
+          <a routerLink="/ide" class="a">Online IDE</a><br>
+          <a routerLink="/compete" class="a">Upcoming Coding Contests</a>
+        </div>
+        <div>
+          <h5>More</h5>
+          <a routerLink="/practice" class="a">Practice Problems</a><br>
+          <a class="a">Contribute</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<div class="container footerb navbar-custom">
+  <a href="#">www.codegiri.com</a>
+</div>

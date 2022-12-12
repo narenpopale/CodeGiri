@@ -1,0 +1,75 @@
+<!-- <mat-grid-list cols="2" rowHeight="1:1">
+    <mat-grid-tile>
+        <h1 class="text-center">{{problem[0].name}}</h1>
+    </mat-grid-tile>
+    <mat-grid-tile>2</mat-grid-tile>
+</mat-grid-list> -->
+<div class="box container-fluid">
+    <div class="left">
+        <h1 class="text-center">{{problem[0].name}}</h1>
+        <h4 class="text-center">Difficulty : {{problem[0].difficulty}}</h4>
+        <h2 class="mx-3">Problem</h2>
+        <p class="mx-3">{{problem[0].description}}</p>
+        <h3 class="mx-3">Input Format</h3>
+        <p class="mx-3">{{problem[0].inputFormat}}</p>
+        <h3 class="mx-3">Output Format</h3>
+        <p class="mx-3">{{problem[0].outputFormat}}</p>
+        <h3 class="mx-3">Constraints</h3>
+        <p class="mx-3">{{problem[0].constraints}}</p>
+        <h3 class="mx-3">Sample :</h3>
+        <div class="box">
+            <div class="input">
+                <h4 class="mx-3">Sample Input</h4>
+                <p class="mx-3">{{problem[0].sampleInput}}</p>
+            </div>
+            <div class="ooutput">
+                <h4 class="mx-3">Sample Output</h4>
+                <p class="mx-3">{{problem[0].sampleOutput}}</p>
+            </div>
+        </div>
+        <h3 class="mx-3">Explanation :</h3>
+        <p class="mx-3">{{problem[0].explanation}}</p>
+    </div>
+    <div class="right px-3">
+        <!-- <form [formGroup]="CodeDesc">
+            <label for="cmd" class="form-label">Select Language</label>
+            <select class="form-select" aria-label="Default select example" formControlName="cmd">
+                <option selected value="g++">CPP</option>
+                <option value="jdk">Java</option>
+                <option value="py">Python</option>
+            </select>
+            
+            <div class="mb-3 mt-3">
+                <label for="code" class="form-label">Code Here:</label>
+                <textarea class="form-control" rows="15" cols="50" id="code" placeholder="Write Your Code Here"
+                    formControlName="code"></textarea>
+            </div>
+            <div class="inputs">
+                <div class="mb-3 mt-3">
+                    <label for="input" class="form-label">Input :</label>
+                    <textarea cols="31" class="form-control" id="input" aria-describedby="emailHelp"
+                        placeholder="Enter Input" formControlName="input"></textarea>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="output" class="form-label">Enter Expected Output :</label>
+                    <textarea cols="31" class="form-control" id="output" aria-describedby="emailHelp"
+                        placeholder="Enter Expected Output" formControlName="output"></textarea>
+                </div>
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="output" class="form-label">Your Output :</label>
+                <textarea class="form-control" id="output" aria-describedby="emailHelp"
+                    placeholder="Your Output" formControlName="youroutput"></textarea>
+            </div>
+            <div class="btns">
+                <button class="btn btn-outline-primary mx-2" (click)="compile()">Compile</button>
+                <button class="btn btn-outline-success mx-2" (click)="submit()">Submit</button>
+            </div>
+        </form> -->
+        <iframe style='max-width:100%; border: none; height: 375px; width: 700px; height:"375"; width:"700"'
+            src= "https://www.interviewbit.com/embed/snippet/9845ef465ebfeb0022fa"
+            title='Interviewbit Ide snippet/9845ef465ebfeb0022fa' loading="lazy" allow="clipboard-write" allowfullscreen
+            referrerpolicy="unsafe-url"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation allow-popups-to-escape-sandbox"></iframe>
+    </div>
+</div>

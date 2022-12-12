@@ -1,0 +1,32 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+
+.box{
+    display: flex;
+}
+
+.inputs{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.left{
+    width: 50vw;
+    background-color: rgb(255, 255, 255);
+}
+.right{
+    width: 50vw;
+}
+
+.right iframe{
+    margin-top: 10em;
+}
+
+.box h1{
+    margin-top: 4em;
+}
+
+.btns{
+    float: right;
+}

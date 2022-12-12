@@ -1,0 +1,56 @@
+.navbar-custom{
+    padding: 15px;
+}
+
+.button-custom{
+    padding-left: 3px;
+    padding-right: 3px;
+    list-style: none;
+}
+
+.img {
+    width: 60%;
+}
+
+.custom-section {
+    background: #f6f8fb;
+}
+
+.blue-section {
+    background: #dbf5f9;
+}
+
+.black-section {
+    background: #2e3444;
+    color: #d4d5d9;
+}
+
+.custom-section-in {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.footer {
+    list-style: none;
+}
+
+.a{
+    text-decoration: none; 
+    color: #d4d5d9;
+}
+
+.footerb a{
+    text-decoration: none; 
+    color: black;
+}
+
+.signup-login-page{
+    background: #e7edf4;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.compete {
+    background: #e7edf4;
+    padding-top: 5%;
+}

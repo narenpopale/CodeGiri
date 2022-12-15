@@ -20,16 +20,19 @@
             <a class="nav-link active" routerLink="/ide">Online IDE</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" >Contribute</a>
+            <a class="nav-link active" routerLink="/contribute">Contribute</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/host-contest">Host Contest</a>
           </li>
 
         </ul>
         <form class="d-flex justify-content-between">
           <li class="nav-item button-custom">
-            <button class="btn btn-outline-primary nav-item " type="submit" (click)="showLoginPage()">Login</button>
+            <button class="btn btn-outline-primary nav-item " type="submit" routerLink="/login">Login</button>
           </li>
           <li class="nav-item  button-custom">
-            <button class="btn btn-outline-primary nav-item" type="submit" (click)="showSignUpPage()">Sign Up</button>
+            <button class="btn btn-outline-primary nav-item" type="submit" routerLink="/register">Sign Up</button>
           </li>
         </form>
       </div>

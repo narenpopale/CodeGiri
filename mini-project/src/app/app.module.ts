@@ -18,6 +18,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { ProblemPageComponent } from './components/problem-page/problem-page.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import { ContestPageComponent } from './components/contest-page/contest-page.component';
+import {MatSortModule} from '@angular/material/sort';
+import { ContributeComponent } from './components/contribute/contribute.component';
+import {MatIconModule} from '@angular/material/icon';
+import { HostContestComponent } from './components/host-contest/host-contest.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -28,10 +39,14 @@ import {MatGridListModule} from '@angular/material/grid-list';
     CompeteComponent,
     ProblemsComponent,
     HomeComponent,
-    ProblemPageComponent
+    ProblemPageComponent,
+    ContestPageComponent,
+    ContributeComponent,
+    HostContestComponent
   ],
   imports: [
     BrowserModule,
+    MatCardModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -42,7 +57,15 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatInputModule,
     MatGridListModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatSortModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatRippleModule,
+    MatButtonToggleModule,
+    MatTabsModule
   ],
   providers: [
     

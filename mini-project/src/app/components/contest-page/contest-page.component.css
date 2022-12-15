@@ -1,0 +1,105 @@
+.custom-container{
+    margin-top: 9em;
+}
+
+.header {
+    height: 40%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+}
+
+.container{
+    margin-top: 10em;
+}
+
+.header h2 {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 3.75rem;
+    line-height: 1.2;
+    letter-spacing: -0.0083em;
+}
+
+.header h6 {
+    color: rgb(255, 255, 255);
+    text-transform: capitalize;
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.57;
+    letter-spacing: 0.00714em;
+}
+
+.banner {
+    height: 400px;
+    width: 100%;
+}
+
+.sub-header {
+    height: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.card {
+    border: 0;
+    background: transparent;
+    color: #fff;
+    padding: 10px;
+    margin: 40px;
+    width: 100px;
+    height: 200px;
+}
+
+.card img {
+    width: 70px;
+    margin: 0 auto;
+}
+
+.card h5 {
+    font-weight: 500;
+}
+
+.card p {
+    font-weight: 700;
+}
+
+table {
+    width: 100%;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-form-field input {
+    color: black;
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+:host ::ng-deep .mat-sort-header-content {
+    color: rgb(0, 0, 0);
+}
+
+:host ::ng-deep .mat-paginator-outer-container {
+    background-color: rgb(255, 255, 255);
+}
+
+:host ::ng-deep tr.mat-header-row {
+    background-color: #ffffff;
+}
+
+:host ::ng-deep tr.mat-row {
+    height: 70px;
+}

@@ -7,7 +7,7 @@ const problemsSchema = mongoose.Schema({
     },
     contestCode: {
         type: String,
-        required: true
+        default: "JAN221"
     },
     difficulty: {
         type: String,
@@ -15,7 +15,7 @@ const problemsSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        required: true
+        default: "New"
     },
     description: {
         type: String,
@@ -43,6 +43,10 @@ const problemsSchema = mongoose.Schema({
     },
     explanation: {
         type: String,
+        required: true
+    },
+    testCases: {
+        type: Array,
         required: true
     }
 })

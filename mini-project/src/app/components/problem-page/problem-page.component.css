@@ -17,6 +17,8 @@ mat-grid-tile {
 }
 .right{
     width: 50vw;
+    background-color: rgb(214, 195, 195);
+    margin-top: 10em;
 }
 
 .right iframe{

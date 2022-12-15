@@ -21,18 +21,18 @@ router.route('/register').post(async (req, res) => {
 // Login Organizer
 router.route('/login').post((req, res) => {
     let organizerData = req.body
-    Organizer.findOne({ email: organizerData.email }, (err, organizer) => {
+    Organizer.findOne({ email: organizerData.EmailOrg }, (err, organizer) => {
         if (err) {
             console.log(err)
         } else {
             if (!organizer) {
-                res.status(401).send('Invalid Email')
+                res.json('Invalid Email')
             }
-            else if (organizer.password !== organizerData.password) {
-                res.status(401).send('Invalid Password')
+            else if (organizer.password !== organizerData.PasswordOrg) {
+                res.json('Invalid Password')
             }
             else {
-                res.status(200).send(organizer);
+                res.json('Valid');
             }
         }
     })

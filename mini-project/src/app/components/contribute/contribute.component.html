@@ -1,0 +1,90 @@
+<div class="container custom">
+    <h1 class="text-center" *ngIf="!submited">Create Your own Problem</h1>
+    <h1 class="text-center mt-3" style="color: green;" *ngIf="submited">Your Problem is Sumitted Successfully !</h1>
+    <form [formGroup]="Problem" *ngIf="!submited">
+        <mat-card>
+            <mat-card-content>
+                <div class="mb-3 mt-3">
+                    <label for="name" class="form-label">Problem Name:</label>
+                    <input type="text" class="form-control" formControlName="name" id="name"
+                        aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="description" class="form-label">Problem Description:</label>
+                    <textarea name="description" type="text" class="form-control" formControlName="description"
+                        id="description" aria-describedby="emailHelp" id="description" cols="100" rows="5"></textarea>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="Difficulty" class="form-label">Difficulty :</label>
+                    <select class="form-select" aria-label="Default select example" formControlName="difficulty">
+                        <option selected value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="inputFormat" class="form-label">Input Format:</label>
+                    <textarea type="text" class="form-control" formControlName="inputFormat" id="inputFormat"
+                        aria-describedby="emailHelp" cols="100" rows="5"></textarea>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="outputFormat" class="form-label">Output Format:</label>
+                    <textarea type="text" class="form-control" formControlName="outputFormat" id="outputFormat"
+                        aria-describedby="emailHelp" cols="100" rows="5"></textarea>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="constraints" class="form-label">Constraints:</label>
+                    <textarea type="text" class="form-control" formControlName="constraints" id="constraints"
+                        aria-describedby="emailHelp" cols="100" rows="5"></textarea>
+                </div>
+                <label style="font-weight: bold;">Sample Test Case :</label>
+                <div class="mb-3 mt-3">
+                    <label for="sampleInput" class="form-label">Sample Input:</label>
+                    <textarea type="text" class="form-control" formControlName="sampleInput" id="sampleInput"
+                        aria-describedby="emailHelp" cols="100" rows="5"></textarea>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="sampleOutput" class="form-label">Sample Output:</label>
+                    <textarea type="text" class="form-control" formControlName="sampleOutput" id="sampleOutput"
+                        aria-describedby="emailHelp" cols="100" rows="5"></textarea>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="explanation" class="form-label">Sample Test Case Explanation:</label>
+                    <textarea type="text" class="form-control" formControlName="explanation" id="explanation"
+                        aria-describedby="emailHelp" cols="100" rows="5"></textarea>
+                </div>
+                <!-- </mat-card-content> -->
+                <label style="font-weight: bold;" class="mt-3" for="explanation" class="form-label">Test Cases:</label>
+                <div class="mb-3 mt-3" *ngFor="let obj of testCase; let i=index">
+
+                    <!-- <mat-card-content> -->
+                    <div style="display: flex;
+                        justify-content: space-between;">
+                        <label>Test Case {{i + 1}}</label>
+                        <button style="float: right;" mat-icon-button color="primary"
+                            aria-label="Example icon button with a home icon" *ngIf="i != 0" (click)="Remove(i)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Input:</mat-label>
+                        <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="obj.Input"
+                            name="Input">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Output:</mat-label>
+                        <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="obj.Output"
+                            name="Output">
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <div class="btns mt-4 mb-4">
+            <button class="btn btn-outline-primary mx-2" (click)="Add()">Add Test Case</button>
+            <button class="btn btn-outline-primary mx-2" (click)="onSubmit()">Submit</button>
+        </div>
+
+    </form>
+</div>

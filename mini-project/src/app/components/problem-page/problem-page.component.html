@@ -31,45 +31,41 @@
         <p class="mx-3">{{problem[0].explanation}}</p>
     </div>
     <div class="right px-3">
-        <!-- <form [formGroup]="CodeDesc">
+        <form [formGroup]="CodeDesc">
             <label for="cmd" class="form-label">Select Language</label>
             <select class="form-select" aria-label="Default select example" formControlName="cmd">
                 <option selected value="g++">CPP</option>
                 <option value="jdk">Java</option>
                 <option value="py">Python</option>
             </select>
-            
+
             <div class="mb-3 mt-3">
                 <label for="code" class="form-label">Code Here:</label>
                 <textarea class="form-control" rows="15" cols="50" id="code" placeholder="Write Your Code Here"
                     formControlName="code"></textarea>
             </div>
-            <div class="inputs">
-                <div class="mb-3 mt-3">
-                    <label for="input" class="form-label">Input :</label>
-                    <textarea cols="31" class="form-control" id="input" aria-describedby="emailHelp"
-                        placeholder="Enter Input" formControlName="input"></textarea>
-                </div>
-                <div class="mb-3 mt-3">
-                    <label for="output" class="form-label">Enter Expected Output :</label>
-                    <textarea cols="31" class="form-control" id="output" aria-describedby="emailHelp"
-                        placeholder="Enter Expected Output" formControlName="output"></textarea>
-                </div>
+            <div class="mb-3 mt-3">
+                <label for="input" class="form-label">Input :</label>
+                <textarea cols="31" class="form-control" id="input" aria-describedby="emailHelp"
+                    placeholder="Enter Input" formControlName="input"></textarea>
             </div>
             <div class="mb-3 mt-3">
-                <label for="output" class="form-label">Your Output :</label>
-                <textarea class="form-control" id="output" aria-describedby="emailHelp"
-                    placeholder="Your Output" formControlName="youroutput"></textarea>
+                <label for="output" class="form-label">Output :</label>
+                <textarea class="form-control" id="output" aria-describedby="emailHelp" placeholder="Your Output"
+                [value]="OutputData"></textarea>
             </div>
             <div class="btns">
                 <button class="btn btn-outline-primary mx-2" (click)="compile()">Compile</button>
                 <button class="btn btn-outline-success mx-2" (click)="submit()">Submit</button>
             </div>
-        </form> -->
-        <iframe style='max-width:100%; border: none; height: 375px; width: 700px; height:"375"; width:"700"'
+        </form>
+        <ng-container *ngFor="let ans of testCases; index as i">
+            <p>Test Case {{i + 1}}: {{ans}}</p>
+        </ng-container>
+        <!-- <iframe style='max-width:100%; border: none; height: 375px; width: 700px; height:"375"; width:"700"'
             src= "https://www.interviewbit.com/embed/snippet/9845ef465ebfeb0022fa"
             title='Interviewbit Ide snippet/9845ef465ebfeb0022fa' loading="lazy" allow="clipboard-write" allowfullscreen
             referrerpolicy="unsafe-url"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation allow-popups-to-escape-sandbox"></iframe>
+            sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation allow-popups-to-escape-sandbox"></iframe> -->
     </div>
 </div>

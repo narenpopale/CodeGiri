@@ -1,0 +1,78 @@
+<div class="container custom">
+    <h1 class="text-center" *ngIf="!submit">Set Your own Contest</h1>
+    <h1 class="text-center mt-3" *ngIf="submit" style="color: green;">Your Contest is Setted Successfully !</h1>
+    <mat-card *ngIf="!submit">
+        <mat-card-content>
+            <form [formGroup]="Contest">
+                <div class="mb-3 mt-3">
+                    <label for="name" class="form-label">Contest Name:</label>
+                    <input type="text" class="form-control" formControlName="name" id="name"
+                        aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="code" class="form-label">Contest Code:</label>
+                    <input type="text" class="form-control" formControlName="code" name="Input">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="startDate" class="form-label">Start Date :</label>
+                    <input name="startDate" type="date" class="form-control" formControlName="startDate" id="startDate"
+                        aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="startTime" class="form-label">Start Time:</label>
+                    <input type="time" class="form-control" formControlName="startTime" id="startTime"
+                        aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="duration" class="form-label">Contest Duration:</label>
+                    <input type="number" class="form-control" formControlName="duration" id="duration"
+                        aria-describedby="emailHelp">
+                </div>
+                <label for="duration" class="form-label">Added Problems:</label>
+                <div class="mb-3 mt-3" *ngFor="let obj of AddedProblems; let i=index">
+                    <td>
+                        <span class="mx-3"> {{i + 1}}. </span>
+                    </td>
+                    <td>
+                        <span class="mx-3"> {{obj.name}} </span>
+                    </td>
+                    <td>
+                        <span class="mx-3"> ({{obj.difficulty}}) </span>
+                    </td>
+                    <td>
+                        <div class="btns mt-4 mb-4">
+                            <button class="btn btn-outline-primary mx-2" (click)="Remove(i)">Remove</button>
+                        </div>
+                    </td>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="mt-4" *ngIf="!submit">
+        <mat-card-content>
+            <label for="duration" class="form-label">Add Problems:</label>
+            <div class="mb-3 mt-3" *ngFor="let obj of Problems; let i=index">
+                <td>
+                    <span class="mx-3"> {{i + 1}} </span>
+                </td>
+                <td>
+                    <span class="mx-3"> {{obj.name}} </span>
+                </td>
+                <td>
+                    <span class="mx-3"> ({{obj.difficulty}}) </span>
+                </td>
+                <td>
+                    <div class="btns mt-4 mb-4">
+                        <button class="btn btn-outline-primary mx-2" (click)="Add(i)">Add</button>
+                    </div>
+                </td>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="btns mt-4 mb-4" *ngIf="!submit">
+        <button class="btn btn-outline-primary mx-2" (click)="onSubmit()">Submit</button>
+    </div>
+
+</div>

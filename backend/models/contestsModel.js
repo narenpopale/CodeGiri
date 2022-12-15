@@ -9,8 +9,12 @@ const contestsSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    start: {
+    startDate: {
         type: Date,
+        required: true
+    },
+    startTime: {
+        type: String,
         required: true
     },
     duration: {
@@ -19,7 +23,7 @@ const contestsSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        required: true
+        dafault: "Upcoming"
     }
 })
 

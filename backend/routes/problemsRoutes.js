@@ -23,8 +23,11 @@ router.route("/old").get(async (req, res) => {
 // Get Specific Problem
 router.route("/old/:id").get(async (req, res) => {
     try {
-        const problems = await Problem.find({ _id: req.params.id });
-        res.json(problems);
+        const problem = await Problem.find({ _id: req.params.id });
+        res.json(problem);
+
+        // const obj = JSON.parse(problem[0].testCases[0])
+        // console.log(testcases[0]);
     }
     catch (error) {
         res.json({ message: error });
@@ -74,7 +77,7 @@ router.route("/problems/:code").get(async (req, res) => {
 router.route("/problem/:id").patch(async (req, res) => {
     try {
         const problem = await Problem.updateOne(
-            { _id : req.params.id},
+            { _id: req.params.id },
             { $set: { contestCode: req.body.code } }
         )
         res.json(problem);
@@ -90,7 +93,7 @@ router.route("/:code").patch(async (req, res) => {
     try {
         const problem = await Problem.updateMany(
             { contestCode: req.params.code },
-            { $set: { status : "Old" } }
+            { $set: { status: "Old" } }
         )
         res.json(problem);
     }
@@ -103,22 +106,32 @@ router.route("/:code").patch(async (req, res) => {
 // Compile Problem --> Specify Only Compiler name
 router.route("/compile").post(async (req, res) => {
     try {
-
+        // res.send("Hit");
         if (req.body.cmd == "g++") {
             var envData = { OS: "windows", cmd: req.body.cmd, options: { timeout: 100 } };
             var code = req.body.code;
 
             if (!req.body.input) {
                 compiler.compileCPP(envData, code, function (data) {
-                    console.log(data.output);
-                    res.json(data.output);
+                    if (!data.error) {
+                        console.log(data.output);
+                        res.json(data.output);
+                    }
+                    else {
+                        res.json(data.error);
+                    }
                 });
             }
             else {
                 var input = req.body.input;
                 compiler.compileCPPWithInput(envData, code, input, function (data) {
-                    console.log(data.output);
-                    res.json(data.output);
+                    if (!data.error) {
+                        console.log(data.output);
+                        res.json(data.output);
+                    }
+                    else {
+                        res.json(data.error);
+                    }
                 });
             }
         }
@@ -128,15 +141,25 @@ router.route("/compile").post(async (req, res) => {
 
             if (!req.body.input) {
                 compiler.compileJava(envData, code, function (data) {
-                    console.log(data.output);
-                    res.json(data.output);
+                    if (!data.error) {
+                        console.log(data.output);
+                        res.json(data.output);
+                    }
+                    else {
+                        res.json(data.error);
+                    }
                 });
             }
             else {
                 var input = req.body.input;
                 compiler.compileJavaWithInput(envData, code, input, function (data) {
-                    console.log(data.output);
-                    res.json(data.output);
+                    if (!data.error) {
+                        console.log(data.output);
+                        res.json(data.output);
+                    }
+                    else {
+                        res.json(data.error);
+                    }
                 });
             }
         }
@@ -146,15 +169,25 @@ router.route("/compile").post(async (req, res) => {
 
             if (!req.body.input) {
                 compiler.compilePython(envData, code, function (data) {
-                    console.log(data.output);
-                    res.json(data.output);
+                    if (!data.error) {
+                        console.log(data.output);
+                        res.json(data.output);
+                    }
+                    else {
+                        res.json(data.error);
+                    }
                 });
             }
             else {
                 var input = req.body.input;
                 compiler.compilePythonWithInput(envData, code, input, function (data) {
-                    console.log(data.output);
-                    res.json(data.output);
+                    if (!data.error) {
+                        console.log(data.output);
+                        res.json(data.output);
+                    }
+                    else {
+                        res.json(data.error);
+                    }
                 });
             }
         }
@@ -163,45 +196,44 @@ router.route("/compile").post(async (req, res) => {
         res.json({ message: error });
     }
 })
+
+const testcases = [];
 
 
 // Submit Problem --> Specify Only Compiler name
 router.route("/submit").post(async (req, res) => {
     try {
 
-        if (req.body.cmd == "g++") {
-            var envData = { OS: "windows", cmd: req.body.cmd, options: { timeout: 100 } };
-            var code = req.body.code;
+        // const arr = req.body.testCases;
 
-            if (!req.body.input) {
-                compiler.compileCPP(envData, code, function (data) {
-                    var str1 = data.output;
-                    var str1 = str1.replace(/\r?\n|\r/g, '');
-                    var str1 = str1.replaceAll(" ", "");
-                    
-                    var str2 = req.body.ExpextedOutput;
-                    var str2 = str2.replace(/\r?\n|\r/g, '');
-                    var str2 = str2.replaceAll(" ", "");
-                    console.log(str1);
-                    console.log(str2);
+        // arr.forEach(element => {
+        //     testcases.push(element);
+        // });
 
-                    // Test Cases checked here
-                    if (str1 == str2) {
-                        res.json("Correct Answer");
-                    }
-                    else {
-                        res.json("Wrong Answer");                        
-                    };
-                });
-            }
-            else {
-                var input = req.body.input;
+        // console.log(testcases);
+
+        // var ans = true;
+        // console.log(testcases.length);
+
+        // testcases.forEach(element => {
+
+            // const testCase = JSON.parse(element);
+            // console.log(testCase);
+
+            if (req.body.cmd == "g++") {
+                var envData = { OS: "windows", cmd: req.body.cmd, options: { timeout: 100 } };
+                var code = req.body.code;
+                // var input = testCase.Input;
+                // var output = testCase.Output;
+                var input = req.body.Input;
+                var output = req.body.Output;
+
                 compiler.compileCPPWithInput(envData, code, input, function (data) {
                     var str1 = data.output;
                     var str1 = str1.replace(/\r?\n|\r/g, '');
                     var str1 = str1.replaceAll(" ", "");
-                    
-                    var str2 = req.body.ExpextedOutput;
+
+                    var str2 = output;
                     var str2 = str2.replace(/\r?\n|\r/g, '');
                     var str2 = str2.replaceAll(" ", "");
                     console.log(str1);
@@ -210,45 +242,31 @@ router.route("/submit").post(async (req, res) => {
                     // Test Cases checked here
                     if (str1 == str2) {
                         res.json("Correct Answer");
+                        console.log("correct");
                     }
                     else {
-                        res.json("Wrong Answer");                        
+                        res.json("Wrong Answer");
+                        console.log("wrong");
+                        ans = false;
                     };
+                    // if (str1 != str2) {
+                    //     ans = false;
+                    // }
                 });
-            }
-        }
-        else if (req.body.cmd == "jdk") {
-            var envData = { OS: "windows", options: { timeout: 100 } };
-            var code = req.body.code;
 
-            if (!req.body.input) {
-                compiler.compileJava(envData, code, function (data) {
-                    var str1 = data.output;
-                    var str1 = str1.replace(/\r?\n|\r/g, '');
-                    var str1 = str1.replaceAll(" ", "");
-                    
-                    var str2 = req.body.ExpextedOutput;
-                    var str2 = str2.replace(/\r?\n|\r/g, '');
-                    var str2 = str2.replaceAll(" ", "");
-                    console.log(str1);
-                    console.log(str2);
 
-                    // Test Cases checked here
-                    if (str1 == str2) {
-                        res.json("Correct Answer");
-                    }
-                    else {
-                        res.json("Wrong Answer");                        
-                    };
-                });
             }
-            else {
+            else if (req.body.cmd == "jdk") {
+                var envData = { OS: "windows", options: { timeout: 100 } };
+                var code = req.body.code;
+
+
                 var input = req.body.input;
                 compiler.compileJavaWithInput(envData, code, input, function (data) {
                     var str1 = data.output;
                     var str1 = str1.replace(/\r?\n|\r/g, '');
                     var str1 = str1.replaceAll(" ", "");
-                    
+
                     var str2 = req.body.ExpextedOutput;
                     var str2 = str2.replace(/\r?\n|\r/g, '');
                     var str2 = str2.replaceAll(" ", "");
@@ -260,43 +278,22 @@ router.route("/submit").post(async (req, res) => {
                         res.json("Correct Answer");
                     }
                     else {
-                        res.json("Wrong Answer");                        
+                        res.json("Wrong Answer");
                     };
                 });
-            }
-        }
-        else if (req.body.cmd == "py") {
-            var envData = { OS: "windows", options: { timeout: 100 } };
-            var code = req.body.code;
 
-            if (!req.body.input) {
-                compiler.compilePython(envData, code, function (data) {
-                    var str1 = data.output;
-                    var str1 = str1.replace(/\r?\n|\r/g, '');
-                    var str1 = str1.replaceAll(" ", "");
-                    
-                    var str2 = req.body.ExpextedOutput;
-                    var str2 = str2.replace(/\r?\n|\r/g, '');
-                    var str2 = str2.replaceAll(" ", "");
-                    console.log(str1);
-                    console.log(str2);
-
-                    // Test Cases checked here
-                    if (str1 == str2) {
-                        res.json("Correct Answer");
-                    }
-                    else {
-                        res.json("Wrong Answer");                        
-                    };
-                });
             }
-            else {
+            else if (req.body.cmd == "py") {
+                var envData = { OS: "windows", options: { timeout: 100 } };
+                var code = req.body.code;
+
+
                 var input = req.body.input;
                 compiler.compilePythonWithInput(envData, code, input, function (data) {
                     var str1 = data.output;
                     var str1 = str1.replace(/\r?\n|\r/g, '');
                     var str1 = str1.replaceAll(" ", "");
-                    
+
                     var str2 = req.body.ExpextedOutput;
                     var str2 = str2.replace(/\r?\n|\r/g, '');
                     var str2 = str2.replaceAll(" ", "");
@@ -308,16 +305,27 @@ router.route("/submit").post(async (req, res) => {
                         res.json("Correct Answer");
                     }
                     else {
-                        res.json("Wrong Answer");                        
+                        res.json("Wrong Answer");
                     };
                 });
+
+
             }
-        }
+        // })
+
+        // if (ans == true) {
+        //     res.json("Correct Answer");
+        //     console.log("Correct");
+        // }
+        // else {
+        //     res.json("Wrong Answer");
+        //     console.log("Wrong");
+        // };
+
     }
     catch (error) {
         res.json({ message: error });
     }
 })
-
 
 module.exports = router;

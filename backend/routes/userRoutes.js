@@ -1,16 +1,40 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 
 const router = express.Router();
 
 
+// Used Hashing to Secure Password
+const securedPassword = async (Password) => {
+    try {
+        const hashedPassword = await bcrypt.hash(Password, 10);
+        return hashedPassword;
+    }
+    catch (error) {
+        console.log(error);
+    }
+} 
+
+
 // Register New User
 router.route('/register').post(async (req, res) => {
-    let user = new User(req.body);
 
     try {
+        const password = await securedPassword(req.body.Password);
+
+        let user = new User({
+            name: req.body.Name,
+            email: req.body.Email,
+            mobile: req.body.Mobile,
+            password: password,
+            is_admin: 0,
+            department: req.body.Department,
+            YearofStudy: req.body.YearofStudy
+        });
+
         const savedPost = await user.save();
-        res.json(savedPost);
+        res.json("true");
     }
     catch (error) {
         res.json(error);
@@ -20,29 +44,48 @@ router.route('/register').post(async (req, res) => {
 
 // Login User
 router.route('/login').post((req, res) => {
-    let userData = req.body
-    User.findOne({ email: userData.email }, (err, user) => {
-        if (err) {
-            console.log(err)
-        } else {
-            if (!user) {
-                res.status(401).send('Invalid Email')
-            }
-            else if (user.password !== userData.password) {
-                res.status(401).send('Invalid Password')
+
+    try {
+
+        let useremail = req.body.Email;
+        let userpassword = req.body.Password;
+        User.findOne({ email: useremail }, async (err, user) => {
+            if (err) {
+                console.log(err)
             }
             else {
-                res.status(200).send(user);
+
+                if (!user) {
+                    res.json('Invalid Email');
+                }
+                else {
+                    // Password Decription
+                    const matchPassword = await bcrypt.compare(userpassword, user.password);
+
+                    if (!matchPassword) {
+                        res.json('Invalid Password');
+                    }
+                    else {
+                        res.json('Valid');
+                    }
+
+                }
+
             }
-        }
-    })
+        })
+
+    }
+    catch (error) {
+        res.json(error);
+    }
+
 })
 
 
 // Add Solved Problems --> Call two functions and put problems id in the body
 var arr = [];
 
-router.get("/solved/:userid",async (req,res)=>{
+router.get("/solved/:userid", async (req, res) => {
     const user = await User.findById(req.params.userid);
     res.json(user);
     arr = user.SolvedProblems;
@@ -52,8 +95,8 @@ router.route("/solved/:userid").patch(async (req, res) => {
     try {
         arr.push(req.body._id);
         const user = await User.updateOne(
-            { _id : req.params.userid},
-            { $set: { SolvedProblems: arr} }
+            { _id: req.params.userid },
+            { $set: { SolvedProblems: arr } }
         )
         res.json(user);
     }

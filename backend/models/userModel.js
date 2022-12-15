@@ -9,9 +9,21 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    mobile: {
+        type: String,
+        required: true        
+    },
     password: {
         type: String,
         required: true
+    },
+    is_admin: {
+        type: Number,
+        required: true
+    },
+    is_varified:{
+        type: Number,
+        default: 0
     },
     department: {
         type: String
@@ -20,7 +32,8 @@ const userSchema = mongoose.Schema({
         type: Number
     },
     SolvedProblems: {
-        type: Array
+        type: Array,
+        default: []
     }
 })
 

@@ -22,7 +22,7 @@ const organizerSchema = mongoose.Schema({
     SetedContests: {
         type: Array
     }
-})
+}) 
 
 // Exports Organizer model
 module.exports = mongoose.model("Organizer", organizerSchema);

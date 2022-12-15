@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,14 +10,50 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
+  RegistrationConfirm : boolean = false;
+  RegistrationConfirmOrg : boolean = false;
+
   signUp = this.fb.group({
-    Username : ["", Validators.required],
+    Name : ["", Validators.required],
     Email : ["", Validators.required],
-    Password : ["", Validators.required]
+    Mobile : ["", Validators.required],
+    Password : ["", Validators.required],
+    Department : [""],
+    YearofStudy : [""]
   })
 
-  constructor(private fb: FormBuilder) { }
+  signUpOrg = this.fb.group({
+    name : ["", Validators.required],
+    email : ["", Validators.required],
+    password : ["", Validators.required],
+    department : [""],
+    designation : [""]
+  })
+
+  constructor(private fb: FormBuilder,private userService: UserService,private router: Router) { } 
 
   ngOnInit(): void {
+  }
+
+  onSubmit(){
+    this.userService.registerUser(this.signUp.value)
+      .subscribe((data) => {
+        console.log(data);
+        if(data == "true"){
+          this.RegistrationConfirm = true;
+          this.router.navigateByUrl("/home");
+        }
+      })
+    }
+    
+    onSubmitOrg(){
+      this.userService.registerOrganizer(this.signUpOrg.value)
+      .subscribe((data) => {
+        console.log(data);
+        if(data == "true"){
+          this.RegistrationConfirmOrg = true;
+          this.router.navigateByUrl("/home");
+        }
+      })
   }
 }

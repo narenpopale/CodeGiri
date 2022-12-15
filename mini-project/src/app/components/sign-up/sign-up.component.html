@@ -1,19 +1,78 @@
 <div class="container custom-container">
-    <h3>Create Your CodeGiri Account</h3>
-    <form>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">CodeGiri Username:</label>
-            <input type="email" class="form-control" formControlName="Username" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email:</label>
-            <input type="email" class="form-control" formControlName="Email" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">CodeGiri Password:</label>
-            <input type="password" class="form-control" formControlName="Password" id="exampleInputPassword1">
-        </div>
-        <button type="submit" class="btn btn-primary">Register</button>
-    </form>
-    <!-- {{signUp.value | json}} -->
+    <h1 class="text-center" *ngIf="!RegistrationConfirm">Create Your CodeGiri Account</h1>
+    <mat-card *ngIf="RegistrationConfirm">
+        <h1 class="text-center" style="color: green;">Your CodeGiri Account is Created!
+        </h1>
+    </mat-card>
+    <mat-tab-group>
+        <mat-tab label="Sign Up as User">
+            <mat-card>
+                <mat-card-content *ngIf="!RegistrationConfirm">
+                    <form [formGroup]="signUp">
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Name:</label>
+                            <input type="text" class="form-control" formControlName="Name" id="name"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" formControlName="Email" id="email"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mobile" class="form-label">Phone No. :</label>
+                            <input type="text" class="form-control" formControlName="Mobile" id="mobile"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password:</label>
+                            <input type="password" class="form-control" formControlName="Password"
+                                id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="department" class="form-label">Department:</label>
+                            <input type="text" class="form-control" formControlName="Department" id="department">
+                        </div>
+                        <div class="mb-3">
+                            <label for="year" class="form-label">Year:</label>
+                            <input type="number" class="form-control" formControlName="YearofStudy" id="year">
+                        </div>
+                        <button mat-stroked-button color="primary" (click)="onSubmit()">Register</button>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="Sign Up as Organizer">
+            <mat-card>
+                <mat-card-content *ngIf="!RegistrationConfirmOrg">
+                    <form [formGroup]="signUpOrg">
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Name:</label>
+                            <input type="text" class="form-control" formControlName="name" id="name"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" formControlName="email" id="email"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password:</label>
+                            <input type="password" class="form-control" formControlName="password"
+                                id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="department" class="form-label">Department:</label>
+                            <input type="text" class="form-control" formControlName="department" id="department">
+                        </div>
+                        <div class="mb-3">
+                            <label for="year" class="form-label">Designation:</label>
+                            <input type="text" class="form-control" formControlName="designation" id="year">
+                        </div>
+                        <button mat-stroked-button color="primary" (click)="onSubmitOrg()">Register</button>
+                    </form>
+                </mat-card-content>                
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
 </div>

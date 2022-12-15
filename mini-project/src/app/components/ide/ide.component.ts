@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProblemsService } from 'src/app/services/problems.service';
 
 @Component({
   selector: 'app-ide',
@@ -7,16 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IdeComponent implements OnInit {
 
-  iframe = document.getElementsByClassName("iframe");
+  CodeDesc !: FormGroup;
+  OutputData: any = "";
 
-constructor() { 
-}
+  constructor(private problemsService: ProblemsService, private fb: FormBuilder) {
+  }
 
-ngOnInit(): void {
-}
+  ngOnInit(): void {
+    this.CodeDesc = this.fb.group({
+      cmd: ['', Validators.required],
+      code: ['', Validators.required],
+      input: ['', Validators.required]
+    })
+  }
 
-// resizeIframe() {
-//   this.iframe[0]. = this.iframe[0].contentWindow.document.body.scrollHeight + "px";
-// }
+  compile() {
+    console.log(this.CodeDesc.value);
+    this.problemsService.compile(this.CodeDesc.value).subscribe((data) => {
+      console.log(data);
+      this.OutputData = data;
+    })
+  }
 
 }

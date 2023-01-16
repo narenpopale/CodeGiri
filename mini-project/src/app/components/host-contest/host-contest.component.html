@@ -41,7 +41,8 @@
                     </td>
                     <td>
                         <div class="btns mt-4 mb-4">
-                            <button class="btn btn-outline-primary mx-2" (click)="Remove(i)">Remove</button>
+                            <!-- <button class="btn btn-outline-primary mx-2" (click)="Remove(i)">Remove</button> -->
+                            <button mat-stroked-button style="color: blue;" class="mx-2" (click)="Remove(i)">Remove</button>
                         </div>
                     </td>
                 </div>
@@ -64,7 +65,8 @@
                 </td>
                 <td>
                     <div class="btns mt-4 mb-4">
-                        <button class="btn btn-outline-primary mx-2" (click)="Add(i)">Add</button>
+                        <!-- <button class="btn btn-outline-primary mx-2" (click)="Add(i)">Add</button> -->
+                        <button mat-stroked-button style="color: blue;" class="mx-2" (click)="Add(i)">Add</button>
                     </div>
                 </td>
             </div>
@@ -72,7 +74,8 @@
     </mat-card>
 
     <div class="btns mt-4 mb-4" *ngIf="!submit">
-        <button class="btn btn-outline-primary mx-2" (click)="onSubmit()">Submit</button>
+        <!-- <button class="btn btn-outline-primary mx-2" (click)="onSubmit()">Submit</button> -->
+        <button mat-stroked-button style="color: blue;" class="mx-2" (click)="onSubmit()">Submit</button>
     </div>
 
 </div>

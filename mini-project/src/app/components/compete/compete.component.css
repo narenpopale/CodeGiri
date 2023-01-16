@@ -91,6 +91,7 @@ mat-form-field input {
 td,
 th {
     width: 25%;
+    cursor: pointer;
 }
 
 :host ::ng-deep .mat-sort-header-content {

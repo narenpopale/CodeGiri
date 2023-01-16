@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Problem } from 'src/app/model/problem';
 import { ProblemsService } from 'src/app/services/problems.service';
 
@@ -16,7 +18,9 @@ export class HostContestComponent implements OnInit {
   Problems: any[] = [];
   AddedProblems: any[] = [];
 
-  constructor(private fb: FormBuilder, private problemsService: ProblemsService) { }
+  constructor(private fb: FormBuilder, 
+              private problemsService: ProblemsService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.Contest = this.fb.group({
@@ -50,11 +54,19 @@ export class HostContestComponent implements OnInit {
 
   onSubmit() {
     this.problemsService.createNewContest(this.Contest.value)
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe({
+        next: (data) => {
+          console.log(data)
+          this.submit = true;
+        },
+        error: (error) => {
+          if(error instanceof HttpErrorResponse){
+            if(error.status == 401){
+              this.router.navigate(["/login"]);
+            }
+          }
+        }
       })
-
-    this.submit = true;
   }
 
 }

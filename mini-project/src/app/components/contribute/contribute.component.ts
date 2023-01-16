@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TestCase } from 'src/app/model/TestCase';
 import { ProblemsService } from 'src/app/services/problems.service';
 
@@ -16,7 +18,9 @@ export class ContributeComponent implements OnInit {
   data !: any;
   submited : boolean = false;
 
-  constructor(private problemsService: ProblemsService, private fb: FormBuilder) { }
+  constructor(private problemsService: ProblemsService, 
+              private fb: FormBuilder,
+              private rotuer: Router) { }
 
   ngOnInit(): void {
     this.Problem = this.fb.group({
@@ -52,11 +56,19 @@ export class ContributeComponent implements OnInit {
     }
     // console.log(this.data);
     this.problemsService.newProblem(this.data)
-      .subscribe((data) => {
-        console.log(data);
-      })
-
-    this.submited = true;
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.submited = true;
+        },
+        error: (err) => {
+          if(err instanceof HttpErrorResponse){
+            if(err.status == 401){
+              this.rotuer.navigate(["/login"]);
+            }
+          }
+        }
+      })    
   }
 
   Add(){

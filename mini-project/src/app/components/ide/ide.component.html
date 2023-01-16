@@ -14,7 +14,7 @@
 
         <div class="mb-3 mt-3">
             <label for="code" class="form-label">Code Here:</label>
-            <textarea class="form-control" rows="15" cols="50" id="code" placeholder="Write Your Code Here"
+            <textarea class="form-control editor" rows="15" cols="50" id="code" placeholder="Write Your Code Here"
                 formControlName="code"></textarea>
         </div>
         <div class="mb-3 mt-3">
@@ -28,7 +28,8 @@
             [value]="OutputData"></textarea>
         </div>
         <div class="btns">
-            <button class="btn btn-outline-primary mx-2" (click)="compile()">Run</button>
+            <button mat-stroked-button style="color: blue;" class="mx-2" (click)="compile()">Run</button>
+            <!-- <button class="btn btn-outline-primary mx-2" (click)="compile()">Run</button> -->
         </div>
     </form>
 </div>

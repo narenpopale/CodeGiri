@@ -15,7 +15,7 @@ export class ContestPageComponent implements OnInit {
 
   title !: string;
   
-  displayedColumns: string[] = ['contestCode', 'name', 'difficulty'];
+  displayedColumns: string[] = ['contestCode', 'name', 'difficulty', 'solve'];
   dataSource !: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;

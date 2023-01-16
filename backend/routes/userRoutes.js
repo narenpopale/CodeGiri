@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
 const router = express.Router();
@@ -14,7 +15,7 @@ const securedPassword = async (Password) => {
     catch (error) {
         console.log(error);
     }
-} 
+}
 
 
 // Register New User
@@ -34,7 +35,19 @@ router.route('/register').post(async (req, res) => {
         });
 
         const savedPost = await user.save();
-        res.json("true");
+
+        if (!savedPost) {
+            console.log("Error!");
+            res.json({});
+        }
+        else {
+
+            let payload = { subject: savedPost._id };
+            let token = jwt.sign(payload, 'secretKey');
+            res.json({ "token": token, "is_admin": 0 });
+
+        }
+
     }
     catch (error) {
         res.json(error);
@@ -66,7 +79,11 @@ router.route('/login').post((req, res) => {
                         res.json('Invalid Password');
                     }
                     else {
-                        res.json('Valid');
+
+                        let payload = { subject: user._id };
+                        let token = jwt.sign(payload, 'secretKey');
+                        res.json({ "token": token, "is_admin": 0 });
+
                     }
 
                 }

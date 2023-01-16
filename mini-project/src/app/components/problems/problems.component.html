@@ -1,9 +1,10 @@
-
-<div class="container pb-5">
-    <h1 class="text-center">Practice Problems</h1>
+<h1 class="text-center" style="margin-top: 150px; font-size: xx-large;">Practice Problems</h1>
+<h3 class="text-center" style="line-height: 30px; letter-spacing: 1px; margin-bottom: 40px;">This is the place to hone your skills</h3>
+<hr>
+<div class="container">
     <!-- table -->
     <mat-form-field>
-        <mat-label >Filter</mat-label>
+        <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Enter Problem" #input>
     </mat-form-field>
 
@@ -12,28 +13,41 @@
 
             <!-- ID Column -->
             <ng-container matColumnDef="contestCode">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header><h3> Contest Code </h3></th>
-                <td mat-cell *matCellDef="let row"> 
-                    <span class="mx-3"> {{row.contestCode | uppercase}} </span>    
+                <th class="table-head" mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <h3> Contest Code </h3>
+                </th>
+                <td mat-cell class="fonts" *matCellDef="let row">
+                    <span class="mx-3"> {{row.contestCode | uppercase}} </span>
                 </td>
             </ng-container>
 
             <!-- Progress Column -->
             <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header><h3> Problem Name </h3></th>
-                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                <th class="table-head" mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <h3> Problem Name </h3>
+                </th>
+                <td style="color: #2A67B1;" class="fonts" mat-cell *matCellDef="let row"> {{row.name}} </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="difficulty">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header><h3> Difficulty </h3></th>
-                <td mat-cell *matCellDef="let row"> {{row.difficulty}} </td>
+                <th class="table-head" mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <h3> Difficulty </h3>
+                </th>
+                <td mat-cell class="fonts" *matCellDef="let row"> {{row.difficulty}} </td>
             </ng-container>
 
             <!-- Fruit Column -->
             <ng-container matColumnDef="Solve">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> <h3> Solve </h3> </th>
-                <td mat-cell *matCellDef="let row"> <button class="btn btn-primary" (click)="gotoProblem(row._id)">Solve ></button> </td>
+                <th class="table-head" mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <h3> Solve </h3>
+                </th>
+                <td mat-cell class="fonts" *matCellDef="let row">
+                    <button (click)="gotoProblem(row._id)" mat-mini-fab color="primary"
+                        aria-label="Example icon button with a menu icon">
+                        <mat-icon>navigate_next</mat-icon>
+                    </button>
+                </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

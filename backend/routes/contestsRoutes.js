@@ -1,11 +1,32 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const Contest = require("../models/contestsModel");
 
 const router = express.Router();
 
 
+// Verify Token Middleware
+function verifyToken(req, res, next){
+
+    if(!req.headers.authorization){
+        return res.status(401).send("Unauthorized Request");
+    }
+    let token = req.headers.authorization.split(' ')[1];
+    if(token == "null"){
+        return res.status(401).send("Unauthorized Request");
+    }
+    let payload = jwt.verify(token, "secretKey");
+    if(!payload){
+        return res.status(401).send("Unauthorized Request");        
+    }
+    req._id = payload.subject;
+    next();
+
+}
+
+
 // Create New Contest
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
     console.log(req.body);
 
     let contest = new Contest(req.body);

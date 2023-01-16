@@ -1,33 +1,39 @@
-<!-- <mat-grid-list cols="2" rowHeight="1:1">
-    <mat-grid-tile>
-        <h1 class="text-center">{{problem[0].name}}</h1>
-    </mat-grid-tile>
-    <mat-grid-tile>2</mat-grid-tile>
-</mat-grid-list> -->
+<div class="header">
+    <div class="header-items">
+        <button routerLink="/practice" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+            <mat-icon>navigate_before</mat-icon>
+        </button>
+        <h1 class="text-center items">{{problem[0].name}}</h1>
+        <h4 class="text-center items">Difficulty : {{problem[0].difficulty}}</h4>
+    </div>
+</div>
+
+<hr>
+
 <div class="box container-fluid">
     <div class="left">
-        <h1 class="text-center">{{problem[0].name}}</h1>
-        <h4 class="text-center">Difficulty : {{problem[0].difficulty}}</h4>
-        <h2 class="mx-3">Problem</h2>
+        <h1 class="mx-3">Problem</h1>
         <p class="mx-3">{{problem[0].description}}</p>
-        <h3 class="mx-3">Input Format</h3>
+        <h2 class="mx-3">Input Format</h2>
         <p class="mx-3">{{problem[0].inputFormat}}</p>
-        <h3 class="mx-3">Output Format</h3>
+        <h2 class="mx-3">Output Format</h2>
         <p class="mx-3">{{problem[0].outputFormat}}</p>
-        <h3 class="mx-3">Constraints</h3>
-        <p class="mx-3">{{problem[0].constraints}}</p>
-        <h3 class="mx-3">Sample :</h3>
+        <h2 class="mx-3">Constraints</h2>
+        <p class="mx-3 constraints" style="padding: 15px;">{{problem[0].constraints}}</p>
+        <h2 class="mx-3">Sample :</h2>
         <div class="box">
             <div class="input">
-                <h4 class="mx-3">Sample Input</h4>
+                <h4 class="mx-3">Input</h4>
+                <hr>
                 <p class="mx-3">{{problem[0].sampleInput}}</p>
             </div>
-            <div class="ooutput">
-                <h4 class="mx-3">Sample Output</h4>
+            <div class="output">
+                <h4 class="mx-3">Output</h4>
+                <hr>
                 <p class="mx-3">{{problem[0].sampleOutput}}</p>
             </div>
         </div>
-        <h3 class="mx-3">Explanation :</h3>
+        <h2 class="mx-3">Explanation :</h2>
         <p class="mx-3">{{problem[0].explanation}}</p>
     </div>
     <div class="right px-3">
@@ -41,7 +47,7 @@
 
             <div class="mb-3 mt-3">
                 <label for="code" class="form-label">Code Here:</label>
-                <textarea class="form-control" rows="15" cols="50" id="code" placeholder="Write Your Code Here"
+                <textarea class="form-control editor" rows="15" cols="50" id="code" placeholder="Write Your Code Here"
                     formControlName="code"></textarea>
             </div>
             <div class="mb-3 mt-3">
@@ -52,16 +58,20 @@
             <div class="mb-3 mt-3">
                 <label for="output" class="form-label">Output :</label>
                 <textarea class="form-control" id="output" aria-describedby="emailHelp" placeholder="Your Output"
-                [value]="OutputData"></textarea>
+                    [value]="OutputData"></textarea>
             </div>
             <div class="btns">
-                <button class="btn btn-outline-primary mx-2" (click)="compile()">Compile</button>
-                <button class="btn btn-outline-success mx-2" (click)="submit()">Submit</button>
+                <button mat-stroked-button style="color: green;" class="mx-2" (click)="compile()">Compile</button>
+                <!-- <button class="btn btn-outline-primary mx-2" (click)="compile()">Compile</button> -->
+                <button mat-stroked-button style="color: blue;" class="mx-2" (click)="submit()">Submit</button>
+                <!-- <button class="btn btn-outline-success mx-2" (click)="submit()">Submit</button> -->
             </div>
         </form>
-        <ng-container *ngFor="let ans of testCases; index as i">
-            <p>Test Case {{i + 1}}: {{ans}}</p>
-        </ng-container>
+        <div class="cases">
+            <ng-container *ngFor="let ans of testCases; index as i">
+                <p [ngClass]="ans == 'Correct Answer'?'c':'w'">Test Case {{i + 1}}: {{ans}}</p>
+            </ng-container>
+        </div>
         <!-- <iframe style='max-width:100%; border: none; height: 375px; width: 700px; height:"375"; width:"700"'
             src= "https://www.interviewbit.com/embed/snippet/9845ef465ebfeb0022fa"
             title='Interviewbit Ide snippet/9845ef465ebfeb0022fa' loading="lazy" allow="clipboard-write" allowfullscreen

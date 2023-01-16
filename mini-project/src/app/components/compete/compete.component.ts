@@ -11,12 +11,12 @@ import { ContestsService } from 'src/app/services/contests.service';
   styleUrls: ['./compete.component.css']
 })
 export class CompeteComponent implements OnInit {
-  displayedColumns1: string[] = ['code', 'name', 'start', 'duration'];
+  displayedColumns1: string[] = ['code', 'name', 'startDate', 'duration'];
   dataSource1 !: MatTableDataSource<any>;
-  displayedColumns2: string[] = ['code', 'name', 'start', 'duration'];
+  displayedColumns2: string[] = ['code', 'name', 'startDate', 'duration'];
   dataSource2 !: MatTableDataSource<any>;
-  displayedColumns3: string[] = ['code', 'name', 'start', 'duration'];
-  dataSource3 !: MatTableDataSource<any>;
+  displayedColumns3: string[] = ['code', 'name', 'startDate', 'duration'];
+  dataSource3 !: MatTableDataSource<any>; 
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;

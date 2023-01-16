@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ProblemsService } from 'src/app/services/problems.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class IdeComponent implements OnInit {
   CodeDesc !: FormGroup;
   OutputData: any = "";
 
-  constructor(private problemsService: ProblemsService, private fb: FormBuilder) {
+  constructor(private problemsService: ProblemsService, 
+              private fb: FormBuilder,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -25,10 +28,16 @@ export class IdeComponent implements OnInit {
 
   compile() {
     console.log(this.CodeDesc.value);
-    this.problemsService.compile(this.CodeDesc.value).subscribe((data) => {
-      console.log(data);
-      this.OutputData = data;
+    this.problemsService.compile(this.CodeDesc.value).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.OutputData = data;
+      },
+      error: (err) => {
+        this.router.navigate(["/login"]);
+      }
     })
+    
   }
 
 }

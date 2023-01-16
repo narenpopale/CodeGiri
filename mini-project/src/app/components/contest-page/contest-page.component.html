@@ -15,28 +15,42 @@
 
                 <!-- ID Column -->
                 <ng-container matColumnDef="contestCode">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <th class="table-head" mat-header-cell *matHeaderCellDef mat-sort-header>
                         <h3> Contest Code </h3>
                     </th>
-                    <td mat-cell *matCellDef="let row">
+                    <td class="fonts" mat-cell *matCellDef="let row">
                         <span class="mx-3"> {{row.contestCode | uppercase}} </span>
                     </td>
                 </ng-container>
 
                 <!-- Progress Column -->
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <th class="table-head" mat-header-cell *matHeaderCellDef mat-sort-header>
                         <h3> Problem Name </h3>
                     </th>
-                    <td mat-cell *matCellDef="let row" style="color: blue; text-decoration: underline;cursor: pointer;" (click)="gotoProblem(row._id)"><a> {{row.name}} </a></td>
+                    <td class="fonts" mat-cell *matCellDef="let row" style="color: #2A67B1;cursor: pointer;"
+                        (click)="gotoProblem(row._id)"><a> {{row.name}} </a></td>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="difficulty">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <th class="table-head" mat-header-cell *matHeaderCellDef mat-sort-header>
                         <h3> Difficulty </h3>
                     </th>
-                    <td mat-cell *matCellDef="let row"> {{row.difficulty}} </td>
+                    <td class="fonts" mat-cell *matCellDef="let row"> {{row.difficulty}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="solve">
+                    <th class="table-head" mat-header-cell *matHeaderCellDef mat-sort-header>
+                        <h3> Solve </h3>
+                    </th>
+                    <td class="fonts" mat-cell *matCellDef="let row">
+                        <button (click)="gotoProblem(row._id)" mat-mini-fab color="primary"
+                            aria-label="Example icon button with a menu icon">
+                            <mat-icon>navigate_next</mat-icon>
+                        </button>
+                    </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -44,7 +58,7 @@
 
                 <!-- Row shown when there is no matching data. -->
                 <tr class="mat-row" *matNoDataRow>
-                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    <td class="fonts" class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
                 </tr>
             </table>
 

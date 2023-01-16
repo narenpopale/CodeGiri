@@ -66,25 +66,40 @@
                             <mat-icon>delete</mat-icon>
                         </button>
                     </div>
-                    <mat-form-field class="example-full-width">
+
+                    <mat-form-field appearance="fill" class="example-full-width">
+                        <mat-label>Input:</mat-label>
+                        <textarea matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="obj.Input"
+                        name="Input"></textarea>
+                    </mat-form-field>
+
+                    <!-- <mat-form-field class="example-full-width">
                         <mat-label>Input:</mat-label>
                         <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="obj.Input"
                             name="Input">
-                    </mat-form-field>
+                    </mat-form-field> -->
 
-                    <mat-form-field class="example-full-width">
+                    <mat-form-field appearance="fill" class="example-full-width">
+                        <mat-label>Output:</mat-label>
+                        <textarea matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="obj.Output"
+                        name="Output"></textarea>
+                    </mat-form-field>
+                    
+                    <!-- <mat-form-field class="example-full-width">
                         <mat-label>Output:</mat-label>
                         <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="obj.Output"
                             name="Output">
-                    </mat-form-field>
+                    </mat-form-field> -->
                 </div>
             </mat-card-content>
         </mat-card>
 
         <div class="btns mt-4 mb-4">
-            <button class="btn btn-outline-primary mx-2" (click)="Add()">Add Test Case</button>
-            <button class="btn btn-outline-primary mx-2" (click)="onSubmit()">Submit</button>
+            <button mat-stroked-button style="color: blue;" class="mx-2" (click)="Add()">Add Test Case</button>
+            <!-- <button class="btn btn-outline-primary mx-2" (click)="Add()">Add Test Case</button> -->
+            <button mat-stroked-button style="color: blue;" class="mx-2" (click)="onSubmit()">Submit</button>
+            <!-- <button class="btn btn-outline-primary mx-2" (click)="onSubmit()">Submit</button> -->
         </div>
-
+ 
     </form>
 </div>

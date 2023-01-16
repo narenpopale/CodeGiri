@@ -16,7 +16,7 @@ export class SignUpComponent implements OnInit {
   signUp = this.fb.group({
     Name : ["", Validators.required],
     Email : ["", Validators.required],
-    Mobile : ["", Validators.required],
+    Mobile : ["", Validators.required], 
     Password : ["", Validators.required],
     Department : [""],
     YearofStudy : [""]
@@ -39,9 +39,11 @@ export class SignUpComponent implements OnInit {
     this.userService.registerUser(this.signUp.value)
       .subscribe((data) => {
         console.log(data);
-        if(data == "true"){
+        if(data){
           this.RegistrationConfirm = true;
           this.router.navigateByUrl("/home");
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("is_admin", data.is_admin);
         }
       })
     }
@@ -50,9 +52,11 @@ export class SignUpComponent implements OnInit {
       this.userService.registerOrganizer(this.signUpOrg.value)
       .subscribe((data) => {
         console.log(data);
-        if(data == "true"){
+        if(data){
           this.RegistrationConfirmOrg = true;
           this.router.navigateByUrl("/home");
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("is_admin", data.is_admin);
         }
       })
   }

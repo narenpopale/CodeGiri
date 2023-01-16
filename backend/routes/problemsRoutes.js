@@ -1,4 +1,5 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const compiler = require('compilex');
 const Problem = require("../models/problemsModel");
 
@@ -6,6 +7,26 @@ const router = express.Router();
 
 var options = { stats: true };
 compiler.init(options);
+
+
+// Verify Token Middleware
+function verifyToken(req, res, next) {
+
+    if (!req.headers.authorization) {
+        return res.status(401).send("Unauthorized Request");
+    }
+    let token = req.headers.authorization.split(' ')[1];
+    if (token == "null") {
+        return res.status(401).send("Unauthorized Request");
+    }
+    let payload = jwt.verify(token, "secretKey");
+    if (!payload) {
+        return res.status(401).send("Unauthorized Request");
+    }
+    req._id = payload.subject;
+    next();
+
+}
 
 
 // Get all old Problems
@@ -48,7 +69,7 @@ router.route("/new").get(async (req, res) => {
 
 
 // Create new Problem
-router.post("/new", async (req, res) => {
+router.post("/new", verifyToken, async (req, res) => {
     let problem = new Problem(req.body);
 
     try {
@@ -104,7 +125,7 @@ router.route("/:code").patch(async (req, res) => {
 
 
 // Compile Problem --> Specify Only Compiler name
-router.route("/compile").post(async (req, res) => {
+router.route("/compile").post(verifyToken, async (req, res) => {
     try {
         // res.send("Hit");
         if (req.body.cmd == "g++") {
@@ -201,44 +222,29 @@ const testcases = [];
 
 
 // Submit Problem --> Specify Only Compiler name
-router.route("/submit").post(async (req, res) => {
+router.route("/submit").post(verifyToken, async (req, res) => {
     try {
 
-        // const arr = req.body.testCases;
+        if (req.body.cmd == "g++") {
+            var envData = { OS: "windows", cmd: req.body.cmd, options: { timeout: 100 } };
+            var code = req.body.code;
+            var input = req.body.Input;
+            var output = req.body.Output;
 
-        // arr.forEach(element => {
-        //     testcases.push(element);
-        // });
 
-        // console.log(testcases);
+            if(!input){
 
-        // var ans = true;
-        // console.log(testcases.length);
-
-        // testcases.forEach(element => {
-
-            // const testCase = JSON.parse(element);
-            // console.log(testCase);
-
-            if (req.body.cmd == "g++") {
-                var envData = { OS: "windows", cmd: req.body.cmd, options: { timeout: 100 } };
-                var code = req.body.code;
-                // var input = testCase.Input;
-                // var output = testCase.Output;
-                var input = req.body.Input;
-                var output = req.body.Output;
-
-                compiler.compileCPPWithInput(envData, code, input, function (data) {
+                compiler.compileCPP(envData, code, function (data) {
                     var str1 = data.output;
                     var str1 = str1.replace(/\r?\n|\r/g, '');
                     var str1 = str1.replaceAll(" ", "");
-
+    
                     var str2 = output;
                     var str2 = str2.replace(/\r?\n|\r/g, '');
                     var str2 = str2.replaceAll(" ", "");
                     console.log(str1);
                     console.log(str2);
-
+    
                     // Test Cases checked here
                     if (str1 == str2) {
                         res.json("Correct Answer");
@@ -249,78 +255,92 @@ router.route("/submit").post(async (req, res) => {
                         console.log("wrong");
                         ans = false;
                     };
-                    // if (str1 != str2) {
-                    //     ans = false;
-                    // }
                 });
 
-
             }
-            else if (req.body.cmd == "jdk") {
-                var envData = { OS: "windows", options: { timeout: 100 } };
-                var code = req.body.code;
+            else{
 
-
-                var input = req.body.input;
-                compiler.compileJavaWithInput(envData, code, input, function (data) {
+                compiler.compileCPPWithInput(envData, code, input, function (data) {
                     var str1 = data.output;
                     var str1 = str1.replace(/\r?\n|\r/g, '');
                     var str1 = str1.replaceAll(" ", "");
-
-                    var str2 = req.body.ExpextedOutput;
+    
+                    var str2 = output;
                     var str2 = str2.replace(/\r?\n|\r/g, '');
                     var str2 = str2.replaceAll(" ", "");
                     console.log(str1);
                     console.log(str2);
-
+    
                     // Test Cases checked here
                     if (str1 == str2) {
                         res.json("Correct Answer");
+                        console.log("correct");
                     }
                     else {
                         res.json("Wrong Answer");
+                        console.log("wrong");
+                        ans = false;
                     };
                 });
 
             }
-            else if (req.body.cmd == "py") {
-                var envData = { OS: "windows", options: { timeout: 100 } };
-                var code = req.body.code;
 
+        }
+        else if (req.body.cmd == "jdk") {
 
-                var input = req.body.input;
-                compiler.compilePythonWithInput(envData, code, input, function (data) {
-                    var str1 = data.output;
-                    var str1 = str1.replace(/\r?\n|\r/g, '');
-                    var str1 = str1.replaceAll(" ", "");
+            var envData = { OS: "windows", options: { timeout: 100 } };
+            var code = req.body.code;
+            var input = req.body.Input;
+            var output = req.body.Output;
+            compiler.compileJavaWithInput(envData, code, input, function (data) {
+                var str1 = data.output;
+                var str1 = str1.replace(/\r?\n|\r/g, '');
+                var str1 = str1.replaceAll(" ", "");
+                
+                var str2 = output;
+                var str2 = str2.replace(/\r?\n|\r/g, '');
+                var str2 = str2.replaceAll(" ", "");
+                console.log(str1);
+                console.log(str2);
 
-                    var str2 = req.body.ExpextedOutput;
-                    var str2 = str2.replace(/\r?\n|\r/g, '');
-                    var str2 = str2.replaceAll(" ", "");
-                    console.log(str1);
-                    console.log(str2);
+                // Test Cases checked here
+                if (str1 == str2) {
+                    res.json("Correct Answer");
+                }
+                else {
+                    res.json("Wrong Answer");
+                };
+            });
 
-                    // Test Cases checked here
-                    if (str1 == str2) {
-                        res.json("Correct Answer");
-                    }
-                    else {
-                        res.json("Wrong Answer");
-                    };
-                });
+        }
+        else if (req.body.cmd == "py") {
 
+            var envData = { OS: "windows", options: { timeout: 100 } };
+            var code = req.body.code;
+            var input = req.body.Input;
+            var output = req.body.Output;
 
-            }
-        // })
+            compiler.compilePythonWithInput(envData, code, input, function (data) {
+                var str1 = data.output;
+                var str1 = str1.replace(/\r?\n|\r/g, '');
+                var str1 = str1.replaceAll(" ", "");
 
-        // if (ans == true) {
-        //     res.json("Correct Answer");
-        //     console.log("Correct");
-        // }
-        // else {
-        //     res.json("Wrong Answer");
-        //     console.log("Wrong");
-        // };
+                var str2 = output;
+                var str2 = str2.replace(/\r?\n|\r/g, '');
+                var str2 = str2.replaceAll(" ", "");
+                console.log(str1);
+                console.log(str2);
+
+                // Test Cases checked here
+                if (str1 == str2) {
+                    res.json("Correct Answer");
+                }
+                else {
+                    res.json("Wrong Answer");
+                };
+            });
+
+        }
 
     }
     catch (error) {

@@ -35,39 +35,45 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(this.Login.value)
       .subscribe((data) => {
         
-        if (data == "Valid") {
-          this.router.navigateByUrl("/home");
-          this.email = false;
-          this.password = false;
-        }
-        else if(data == "Invalid Email") {
+        if(data == "Invalid Email") {
           this.email = true;
         }
         else if(data == "Invalid Password") {
           this.email = false;
           this.password = true;
         }
-
+        else {
+          console.log(data);
+          this.router.navigateByUrl("/home");
+          this.email = false;
+          this.password = false;
+          localStorage.setItem("token",data.token);
+          localStorage.setItem("is_admin",data.is_admin);
+        }
+        
       })
-  }
-
-  onOrgSubmit(){
-    this.userService.loginOrganizer(this.LoginOrg.value)
+    }
+    
+    onOrgSubmit(){
+      this.userService.loginOrganizer(this.LoginOrg.value)
       .subscribe((data) => {
         
-        if (data == "Valid") {
-          this.router.navigateByUrl("/home");
-          this.emailOrg = false;
-          this.passwordOrg = false;
-        }
-        else if(data == "Invalid Email") {
+        if(data == "Invalid Email") {
           this.emailOrg = true;
         }
         else if(data == "Invalid Password") {
           this.emailOrg = false;
           this.passwordOrg = true;
         }
-
+        else {
+          console.log(data);
+          this.router.navigateByUrl("/home");
+          this.emailOrg = false;
+          this.passwordOrg = false;
+          localStorage.setItem("token",data.token);
+          localStorage.setItem("is_admin",data.is_admin);
+        }
+        
       })
   }
 }

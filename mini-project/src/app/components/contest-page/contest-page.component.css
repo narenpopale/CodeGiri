@@ -103,3 +103,14 @@ th {
 :host ::ng-deep tr.mat-row {
     height: 70px;
 }
+
+
+.fonts{
+    font-size: 16px;
+    font-weight: 400;
+    cursor: context-menu;
+}
+
+.table-head {
+    background-color: #2c2ddb8c;
+}

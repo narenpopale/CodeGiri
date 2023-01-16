@@ -8,6 +8,96 @@
     list-style: none;
 }
 
+.head{
+    font-family: Merriweather,serif;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: 0;
+    color: #4a4a4a;
+    font-weight: 700;
+    border-bottom: 2px solid black;
+    margin-bottom: 40px;
+}
+
+.customListContainer {
+    max-width: 530px;
+    width: 100%;
+}
+
+.customListContainer .listItem {
+    display: flex;
+    margin-bottom: 32px;
+}
+
+.customListContainer .listItem .listIcon {
+    margin-right: 16px;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.i-practice {
+    display: inline-block;
+    background: url(https://cdn.codechef.com/images/home/i-practice.svg);
+    width: 24px;
+    height: 24px;
+}
+
+.i-home-compete {
+    display: inline-block;
+    background: url(https://cdn.codechef.com/images/home/i-home-compete.svg);
+    width: 18px;
+    height: 21px;
+}
+
+.customListContainer .listItemHeader {
+    margin-bottom: 4px;
+}
+
+.customListContainer .listTitle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #363636;
+}
+
+.customListContainer .listText {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #4a4a4a;
+}
+
+.blueButton {
+    padding: 8px 12px 8px 16px;
+    background: #2c84db;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.MT-32 {
+    margin-top: 32px!important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.l-margin-left-15 {
+    margin-left: 15px!important;
+}
+
+.i-right-arrow-white-no-tail {
+    background: url(https://cdn.codechef.com/images/icons/right-arrow-white-no-tail.svg);
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
 .img {
     width: 60%;
 }
@@ -53,4 +143,8 @@
 .compete {
     background: #e7edf4;
     padding-top: 5%;
+}
+
+.space-between{
+    justify-content: space-between;
 }

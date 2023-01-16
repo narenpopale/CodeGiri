@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProblemPageComponent } from './components/problem-page/problem-page.component';
 import { ProblemsComponent } from './components/problems/problems.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path:"", redirectTo: "/home", pathMatch: "full" },
@@ -19,10 +20,18 @@ const routes: Routes = [
   { path:"problem-page/:id", component: ProblemPageComponent },
   { path:"contest-page/:code", component: ContestPageComponent },
   { path:"ide", component: IdeComponent },
-  { path:"contribute", component: ContributeComponent },
   { path:"register", component: SignUpComponent },
   { path:"login", component: LoginComponent },
-  { path:"host-contest", component: HostContestComponent }
+  { 
+    path:"contribute", 
+    component: ContributeComponent,
+    canActivate: [AuthGuard]
+  },
+  { 
+    path:"host-contest", 
+    component: HostContestComponent,
+    canActivate: [AuthGuard] 
+  }
 ];
 
 @NgModule({

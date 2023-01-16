@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProblemsService } from 'src/app/services/problems.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-problem-page',
@@ -20,7 +21,10 @@ export class ProblemPageComponent implements OnInit {
   Data: any;
 
 
-  constructor(private problemsService: ProblemsService, private activatedRoute: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private problemsService: ProblemsService, 
+              private activatedRoute: ActivatedRoute, 
+              private fb: FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((data) => {
@@ -44,10 +48,16 @@ export class ProblemPageComponent implements OnInit {
 
   compile() {
     console.log(this.CodeDesc.value);
-    this.problemsService.compile(this.CodeDesc.value).subscribe((data) => {
-      console.log(data);
-      this.OutputData = data;
+    this.problemsService.compile(this.CodeDesc.value).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.OutputData = data;
+      },
+      error: (err) => {
+        this.router.navigate(["/login"]);
+      }
     })
+    
   }
 
   submit() {
@@ -67,14 +77,24 @@ export class ProblemPageComponent implements OnInit {
         Input: element.Input,
         Output: element.Output
       }
-      this.problemsService.submit(this.Data).subscribe((data) => {
-        console.log(data);
-        this.testCases.push(data);
-        // if (data == "Wrong Answer") {
-        //   this.FinalAns = false;
-        //   console.log(this.FinalAns);
-        // }
+      this.problemsService.submit(this.Data).subscribe({
+        next: (data) => {
+          console.log(data); 
+          this.testCases.push(data); 
+          // if (data == "Wrong Answer") {
+          //   this.FinalAns = false;
+          //   console.log(this.FinalAns); 
+          // }
+        },
+        error: (err) => {
+          if(err instanceof HttpErrorResponse){
+            if(err.status == 401){
+              this.router.navigate(["/login"]);
+            }
+          }
+        }
       })
+      
     }
 
   }

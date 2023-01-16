@@ -1,5 +1,5 @@
 <!-- Sliders -->
-<div class="container" id="home" style="margin-top: 5%;">
+<div class="container" id="home" style="margin-top: 7%;">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -40,24 +40,44 @@
 <div id="practice" class="custom-section">
     <div class="container">
         <div class="custom-section-in">
-            <h3>Practice</h3>
+            <h2 style="margin-bottom: 40px;"><span class="head">Practice</span></h2>
 
-            <br>
-            <div class="lists">
-                <ul>
-                    <li>
-                        <h5>Problems for everyone</h5>
-                    </li>
-                    Includes Beginners to Experienced programmers
-                    <br>
-                    <br>
-                    <li>
-                        <h5>3000+ Problems</h5>
-                    </li>
-                    Practice more than 3000 problems across varying Difficulty ratings and Popular topics.
-                </ul>
+            <div class="customListContainer">
+                <div class="listItem">
+                    <div class="listIcon">
+                        <i class="i-practice"></i>
+                    </div>
+                    <div class="listContent">
+                        <div class="listItemHeader">
+                            <p class="listTitle">Problems for everyone</p>
+                        </div>
+                        <div class="listItemBody">
+                            <p class="listText">Includes Beginners to Experienced programmers</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button type="button" class="btn btn-primary" routerLink="/practice"><b> Go To Practice </b></button>
+
+            <div class="customListContainer">
+                <div class="listItem">
+                    <div class="listIcon">
+                        <i class="i-practice"></i>
+                    </div>
+                    <div class="listContent">
+                        <div class="listItemHeader">
+                            <p class="listTitle">3000+ Problems</p>
+                        </div>
+                        <div class="listItemBody">
+                            <p class="listText">Practice more than 3000 problems across varying Difficulty ratings and
+                                Popular topics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="blueButton MT-32" routerLink="/practice">Go To Practice
+                <i class="i-right-arrow-white-no-tail l-margin-left-15"></i>
+            </a>
         </div>
     </div>
 </div>
@@ -68,22 +88,31 @@
 <div id="compete" class="">
     <div class="container">
         <div class="custom-section-in">
-            <h3>Compete</h3>
+            <h2 style="margin-bottom: 40px;"><span class="head">Compete</span></h2>
 
-            <br>
-            <div class="lists">
-                <ul>
-                    <li>
-                        <h5>Rated Contests</h5>
-                    </li>
-                    <ul>
-                        <li>Includes Beginners to Experienced programmers</li>
-                        <li>Participate in 6+ contests each month, on every Wednesday and the Weekends</li>
-                        <li>Four distinct Divisions grouping similarly skilled programmers together</li>
-                    </ul>
-                </ul>
+            <div class="customListContainer">
+                <div class="listItem">
+                    <div class="listIcon">
+                        <i class="i-home-compete"></i>
+                    </div>
+                    <div class="listContent">
+                        <div class="listItemHeader">
+                            <p class="listTitle">Rated Contests</p>
+                        </div>
+                        <div class="listItemBody">
+                            <p class="listText">Includes Beginners to Experienced programmers</p>
+                            <p class="listText">Participate in 6+ contests each month, on every Wednesday and the
+                                Weekends</p>
+                            <p class="listText">Four distinct Divisions grouping similarly skilled programmers together
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button type="button" class="btn btn-primary" routerLink="/compete"><b> Go To Contests </b></button>
+
+            <a class="blueButton MT-32" routerLink="/compete">Go To Contests
+                <i class="i-right-arrow-white-no-tail l-margin-left-15"></i>
+            </a>
         </div>
     </div>
 </div>
@@ -94,24 +123,34 @@
 <div id="ide" class="blue-section">
     <div class="container">
         <div class="custom-section-in">
-            <h3>Online IDE</h3>
-            <br>
-            <div class="d-flex justify-content-around">
-                <div>
-                    <ul>
-                        <li>
-                            <h5>IDE for Practice</h5>
-                        </li>
-                        We now support 4 popular coding languages. <br>
-                        At our core, CodeGiri is about programmers. Our powerful online
-                        ide help you test, debug and even write your own codes online.
-                    </ul>
+            <h2 style="margin-bottom: 40px;"><span class="head">Online IDE</span></h2>
+
+            <div class="d-flex space-between">
+                <div class="customListContainer">
+                    <div class="listItem">
+                        <div class="listIcon">
+                            <i class="i-home-compete"></i>
+                        </div>
+                        <div class="listContent">
+                            <div class="listItemHeader">
+                                <p class="listTitle">IDE for Practice</p>
+                            </div>
+                            <div class="listItemBody">
+                                <p class="listText">We now support 4 popular coding languages</p>
+                                <p class="listText">At our core, CodeGiri is about programmers</p>
+                                <p class="listText">Our powerful online ide help you test, debug and even write your own
+                                    codes online</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="blueButton MT-32" routerLink="/ide">Go To IDE
+                        <i class="i-right-arrow-white-no-tail l-margin-left-15"></i>
+                    </a>
                 </div>
                 <div>
-                    <img src="assets/ide.jpg" alt="img" class="img">
+                    <img style="float: right;" src="assets/ide.jpg" alt="img" class="img">
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" routerLink="/ide"><b> Go To IDE </b></button>
         </div>
     </div>
 </div>

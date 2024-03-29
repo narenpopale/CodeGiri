@@ -13,18 +13,18 @@
         <li class="nav-item">
           <a class="nav-link active" routerLink="/practice">Practice</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link active" routerLink="/compete">Compete</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link active" routerLink="/ide">Online IDE</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" routerLink="/contribute">Contribute</a>
         </li>
-        <li class="nav-item" *ngIf="(!userService.loggedIn() || userService.getAdminInfo())">
+        <!-- <li class="nav-item" *ngIf="(!userService.loggedIn() || userService.getAdminInfo())">
           <a class="nav-link active" routerLink="/host-contest">Host Contest</a>
-        </li>
+        </li> -->
 
       </ul>
       <button mat-button [matMenuTriggerFor]="menu"><button style="color: #2c84db;" mat-icon-button color="primary" aria-label="Example icon button with a menu icon">
@@ -54,7 +54,7 @@
         <div>
           <h5 class="btm">Programming Tools</h5>
           <a routerLink="/ide" class="a">Online IDE</a><br>
-          <a routerLink="/compete" class="a">Upcoming Coding Contests</a>
+          <!-- <a routerLink="/compete" class="a">Upcoming Coding Contests</a> -->
         </div>
         <div>
           <h5 class="btm">More</h5>
@@ -70,5 +70,5 @@
 <!-- Footer -->
 <div class="container footerb navbar-custom" style="display: flex; justify-content: space-between;">
   <a routerLink="/home">www.codegiri.com</a>
-  <div>&copy; 2023 CodeGiri</div>
+  <div>&copy; 2024 CodeGiri</div>
 </div>
